@@ -19,8 +19,8 @@ User should be able to
 
         ### Relationship
         has many: authored_posts
-        has_many: circler_users through: circler_circling 
-        has_many: circling_users through: circler_circling
+        has_many: followers through: followers_following 
+        has_many: following through: followers_following
         has_many: comments
         has_many: commented_posts through: comment
         has_many: likes
@@ -50,10 +50,10 @@ User should be able to
         belongs_to :post
 
 
-    circler_circling 
+    followers_following 
 
-    belongs_to :circler_user 
-    belongs_to : circling_user
+    belongs_to :followers 
+    belongs_to : following
 
 
     Likes
