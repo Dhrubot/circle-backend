@@ -46,7 +46,7 @@ User should be able to
         
         ### Relationship
 
-        belongs_to :user
+        belongs_to :commentor
         belongs_to :post
 
 
@@ -58,4 +58,4 @@ User should be able to
 
     Likes
     belongs_to :post
-    belongs_to :user
+    belongs_to :liker

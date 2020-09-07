@@ -1,6 +1,8 @@
 class User < ApplicationRecord
     has_secure_password
 
+    has_many :authored_posts, class_name: 'Post', foreign_key: 'author_id'
+
     before_save :downcase_attributes
 
     private
