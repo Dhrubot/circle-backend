@@ -10,7 +10,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    render json: @user, include: ['followers.follower', 'followings.following']
   end
 
   # POST /users
@@ -22,6 +22,7 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: @user.errors, status: :unprocessable_entity
     end
+    
   end
 
   # PATCH/PUT /users/1

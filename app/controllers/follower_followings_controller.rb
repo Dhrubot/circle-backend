@@ -1,2 +1,0 @@
-class FollowerFollowingsController < ApplicationController
-end

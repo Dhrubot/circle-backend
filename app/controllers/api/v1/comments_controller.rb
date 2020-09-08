@@ -1,19 +1,21 @@
 class Api::V1::CommentsController < ApplicationController
 
+    before_action :set_post
+
     def index
-        comments = Comment.all
+        comments = @post.comments
 
         render json: comments
     end
 
     def show
-        comment = Comment.find_by(id: params[:id])
+        comment = @post.comments.find_by(id: params[:id])
 
         render json: comment
     end
 
     def create
-        comment = Comment.new(comment_params)
+        comment = @post.comments.build(comment_params)
 
         if comment.save
             render json: comment, status: :created, location: comment
@@ -23,6 +25,8 @@ class Api::V1::CommentsController < ApplicationController
     end
 
     def update
+        comment = @post.comments.find_by(id: params[:id])
+
         if comment.update(comment_params)
             render json: comment
         else
@@ -31,11 +35,15 @@ class Api::V1::CommentsController < ApplicationController
     end
 
     def destroy
-        comment = Comment.find_by(id: params[:id])
+        comment = @post.comment.find_by(id: params[:id])
         comment.destroy
     end
 
     private
+
+    def set_post
+        @post = Post.find_by(id: params[:post_id])
+    end
     
     def comment_parmas
         params.require(:comment).permit(:body, :post, :commentor)

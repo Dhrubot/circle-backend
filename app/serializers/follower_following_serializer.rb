@@ -1,5 +1,5 @@
 class FollowerFollowingSerializer < ActiveModel::Serializer
   attributes :id
-  has_one :follower
-  has_one :following
+  belongs_to :follower
+  belongs_to :following
 end
