@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   
   
-  
+  post 'api/v1/login', to: 'api/v1/sessions#create'
+
   namespace :api do
     namespace :v1 do
 
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
           resources :likes
           resources :comments
         end
-        
+
       end
     end
   end

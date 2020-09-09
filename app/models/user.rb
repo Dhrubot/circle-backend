@@ -2,7 +2,8 @@ class User < ApplicationRecord
     has_secure_password
 
     has_many :authored_posts, class_name: 'Post', foreign_key: 'author_id'
-    has_many :commented_posts, class_name: 'Comment', foreign_key: 'commentor_id'
+    has_many :comments, class_name: 'Comment', foreign_key: 'commentor_id'
+    has_many :commented_posts, through: :comments, source: 'post'
     has_many :likes, class_name: 'Like', foreign_key: 'liker_id'
     has_many :followers, class_name: 'FollowerFollowing', foreign_key: 'following_id'
     has_many :followings, class_name: 'FollowerFollowing', foreign_key: 'follower_id'

@@ -6,10 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user1 = User.create(username: 'dhrubo', email: 'dhrubo@mail.com', password: 'password')
-user2 = User.create(username: 'rasel', email: 'rasel@mail.com', password: 'password')
-user3 = User.create(username: 'nasir', email: 'nasir@mail.com', password: 'password')
-user4 = User.create(username: 'manik', email: 'manik@mail.com', password: 'password')
+user1 = User.create(username: 'dhrubo', email: 'dhrubo@mail.com', password: '12345')
+user2 = User.create(username: 'rasel', email: 'rasel@mail.com', password: '12345')
+user3 = User.create(username: 'nasir', email: 'nasir@mail.com', password: '12345')
+user4 = User.create(username: 'manik', email: 'manik@mail.com', password: '12345')
 
 post1 = Post.create(author: user1, title: 'Hello Cali!', description: 'Had an awesome time in Cali last week', location: 'LA')
 post2 = Post.create(author: user2, title: 'Hello NY!', description: 'Had an awesome time in New York last week', location: 'NY')
