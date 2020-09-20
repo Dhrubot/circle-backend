@@ -7,13 +7,18 @@ class Api::V1::LikesController < ApplicationController
         render json: likes
     end
 
+
     def create
-        like = Like.new(like_params)
+        post = Post.find_by(id: params[:post_id])
+        like = post.likes.build(like_params)
 
         if like.save
-            render json: like, status: :created, location: like
+            render json: like, status: :created
         else
-            render json: like.errors, status: :unprocessable_entity
+             resp = {
+                error: like.errors.full_messages.to_sentence
+            }
+            render json: resp, status: :unprocessable_entity
         end
     end
 
@@ -25,6 +30,6 @@ class Api::V1::LikesController < ApplicationController
 
     private
     def like_params
-        params.require(:like).permit(:liker, :post)
+        params.require(:like).permit(:liker_id, :post_id)
     end
 end
