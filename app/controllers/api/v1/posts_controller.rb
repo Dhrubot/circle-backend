@@ -1,9 +1,10 @@
 class Api::V1::PostsController < ApplicationController
 
     def index
-        posts = Post.all
+        user = User.find_by(id: params[:user_id])
+        posts = user.authored_posts
 
-        render json: posts, include: ['comments', 'comments.commentor', 'likes', 'likes.liker']
+        render json: posts
     end
 
     def show
@@ -13,12 +14,15 @@ class Api::V1::PostsController < ApplicationController
     end
 
     def create
-        post = Post.new(post_params)
+        post = current_user.authored_posts.build(post_params)
 
         if post.save
-            render json: post, status: :created, location: post
+            render json: post, status: :created
         else
-      r     ender json: post.errors, status: :unprocessable_entity
+             resp = {
+                error: post.errors.full_messages.to_sentence
+            }
+            render json: resp, status: :unprocessable_entity
         end
     end
 
@@ -32,12 +36,20 @@ class Api::V1::PostsController < ApplicationController
 
     def destroy
         post = Post.find_by(id: params[:id])
-        post.destroy
+
+        if post.destroy
+            render json: post, status: :ok
+        else
+            error_resp = {
+                error: "Post not found and not destroyed"
+            }
+            render json: error_resp, status: :unprocessable_entity
+        end
     end
 
     private
     
-    def post_parmas
+    def post_params
         params.require(:post).permit(:title, :description, :location, :author)
     end
 
