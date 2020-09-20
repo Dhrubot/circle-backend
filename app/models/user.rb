@@ -8,6 +8,10 @@ class User < ApplicationRecord
     has_many :followers, class_name: 'FollowerFollowing', foreign_key: 'following_id'
     has_many :followings, class_name: 'FollowerFollowing', foreign_key: 'follower_id'
 
+    validates :username, :email, :password, presence: true
+    validates :username, :email, uniqueness: true
+    validates_length_of :username, minimum: 4
+
     before_save :downcase_attributes
 
     private
