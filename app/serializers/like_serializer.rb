@@ -1,5 +1,5 @@
 class LikeSerializer < ActiveModel::Serializer
-  attributes :id
-  belongs_to :liker
+  attributes :id, :liker, :post_id
+  belongs_to :liker, serializer: UserSerializer
   # belongs_to :post
 end
