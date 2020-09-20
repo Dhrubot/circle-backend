@@ -10,7 +10,7 @@ class Api::V1::SessionsController < ApplicationController
             render json: @user
         else
             render json: {
-                error: 'Much big error'
+                error: "Username/Password combination doesn't match"
             }
         end
     end
@@ -26,6 +26,13 @@ class Api::V1::SessionsController < ApplicationController
                 error: 'No one logged in'
             }
         end
+    end
+
+    def destroy
+        session.clear
+        render json: {
+            message: 'Logged out'
+        }
     end
 
 end
