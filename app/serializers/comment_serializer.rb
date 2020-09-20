@@ -1,5 +1,9 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :body
-  belongs_to :commentor, serializer: CommentCommentorSerializer
+  attributes :id, :body, :commentor, :post_id
+  
   # belongs_to :post
+  def commentor
+    UserSerializer.new(object.commentor)
+  end
+
 end
