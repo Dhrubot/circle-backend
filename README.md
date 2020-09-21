@@ -12,20 +12,3 @@ rails s -p 3001
 After that head down to this link to download the frontend portion of the app. 
 https://github.com/Dhrubot/circle-frontend
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
