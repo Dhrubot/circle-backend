@@ -7,9 +7,9 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://dhrubot.github.io/circle-frontend/'
+    origins 'http://localhost:3000'
 
-    resource '*',
+    resource 'https://circle-dh.herokuapp.com/api/v1',
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
       credentials: true
