@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://dhrubot.github.io/
+    origins ['http://localhost:3000', 'https://dhrubot.github.io/circle-frontend']
 
     resource '*',
       headers: :any,
