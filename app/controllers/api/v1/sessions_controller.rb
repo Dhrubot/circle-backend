@@ -6,7 +6,7 @@ class Api::V1::SessionsController < ApplicationController
 
         if @user && @user.authenticate(params[:session][:password])
             session[:user_id] = @user.id
-
+            puts session[:user_id]
             render json: @user
         else
             render json: {
@@ -17,9 +17,7 @@ class Api::V1::SessionsController < ApplicationController
 
 
     def get_current_user
-
         if logged_in?
-
             render json: current_user
         else
             render json: {
